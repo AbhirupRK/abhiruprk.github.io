@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light">
+  <title>Abhirup | Home</title>
+  <link rel="stylesheet" href="css/pico.min.css">
+  <!-- <link rel="stylesheet" href="css/fa-all.min.css"> -->
+
+  <style>
+    main.container {
+      padding-bottom: 4rem;
+    }
+    section.spaced {
+      padding-top: 4rem;
+    }
+    @media (max-width: 600px) {
+      section.spaced {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+    }
+    .row {
+      display: flex; gap: 2rem; align-items: center; 
+      justify-content: center; flex-wrap: wrap;
+    }
+    .intro-pic {
+      flex: 0 0 250px; max-width: 100%; 
+      text-align: center;
+    }
+    .intro-text {
+      flex: 1 1 300px; max-width: 600px; 
+      padding: 0 1rem; text-align: justify;
+    }
+    .social-icons a {
+      font-size: 30px; opacity: 0.85; width: 30px; 
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .social-icons a:hover {
+      transform: scale(1.2); opacity: 1;
+    }
+    html[data-theme="dark"] .social-icons a {
+      filter: invert(1);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(250, 252, 253, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    html[data-theme="dark"] header {
+      background-color: rgba(26, 28, 31, 0.85);
+    }
+    .icon {
+      width: 30px; cursor: pointer; 
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .icon:hover {
+        transform: scale(1.2);
+    }
+    html[data-theme="dark"] .icon {
+      filter: invert(1);
+    }
+    nav ul {
+      gap: 1rem;
+    }
+    nav ul li {
+      padding: 0.0rem;
+    }
+    nav ul li a {
+      font-size: 1rem; color: var(--pico-text);
+      font-weight: 500; letter-spacing: 0.03em;
+    }
+    footer {
+      margin-top: 4rem; text-align: center; 
+      font-size: 0.8rem; opacity: 0.6;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Navbar with header box -->
+  <header>
+    <nav class="container-fluid">
+      <ul>
+        <li><a href="#">
+          <img src="media/icons/house.svg" alt="Home" class="icon">
+        </a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">Publications</a></li>
+        <li><a href="#">About</a></li>
+        <li>
+          <details class="dropdown">
+            <summary>Apps</summary>
+            <ul>
+              <li><a href="#">DFT Tools</a></li>
+              <li><a href="#">DFT Kit</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <a href="#" id="themeToggle" title="Toggle theme">
+            <img id="themeIcon" class="icon" src="media/icons/sun.svg" alt="Toggle theme">
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main body -->
+  <main class="container">
+
+    <!-- Introduction -->
+    <section class="intro row spaced" style="gap: 4rem;">
+      
+      <div class="intro-pic">
+        <figure style="margin: 0;">
+          <img src="media/dp.jpeg" alt="Abhirup's photo"
+              style="width: 100%; height: auto; max-width: 250px;
+                     border-radius: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        </figure>
+      </div>
+
+      <div class="intro-text">
+        <h2>Hello, I'm Abhirup 👋</h2>
+        <p>
+          I am a physicist specializing in theoretical <strong>Condensed Matter Physics</strong>. I earned my PhD from <em>IIT Kharagpur</em>, where I investigated transport and optical propeties of topological Weyl semimetals using first-principles calculations. Currently, I am a <strong>postdoc at Uppsala University</strong>, focusing on laser-induced ultrafast dynamics of non-equilibrium systems.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- Social Media Icons -->
+    <section class="social-icons row spaced">
+      <a href="https://scholar.google.com/citations?user=y6Jx8o4AAAAJ&hl=en" target="_blank" title="Google Scholar">
+        <img src="media/icons/google-scholar.svg" alt="Google Scholar"">
+      </a>
+      <a href="https://orcid.org/0000-0002-4172-6516" target="_blank" title="ORCID">
+        <img src="media/icons/orcid.svg" alt="ORCID"">
+      </a>
+      <a href="https://github.com/AbhirupRK" target="_blank" title="GitHub">
+        <img src="media/icons/github.svg" alt="GitHub">
+      </a>
+      <a href="https://linkedin.com/in/abhiruprk" target="_blank" title="LinkedIn">
+        <img src="media/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="container">
+    &copy; 2025 Abhirup Roy Karmakar
+  </footer>
+
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  const htmlElement = document.documentElement;
+
+  function setTheme(mode) {
+    htmlElement.setAttribute("data-theme", mode);
+    localStorage.setItem("theme", mode);
+    themeIcon.src = mode === "dark" ? "media/icons/moon-stars.svg" : "media/icons/sun.svg";
+    themeIcon.alt = mode === "dark" ? "Dark mode" : "Light mode";
+  }
+
+  // Load preference
+  const savedTheme = localStorage.getItem("theme") || "light";
+  setTheme(savedTheme);
+
+  themeToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    const newTheme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  });
+</script>
+
+</body>
+</html>
